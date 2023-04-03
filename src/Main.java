@@ -1,17 +1,34 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        int[] numbers = {3, 2, 4, 1};
-        double average = calculateAverage(numbers, numbers.length);
-        System.out.println("The average is: " + average);
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int n = scanner.nextInt();
+        if (isPrime(n)) {
+            System.out.println(n + " is prime");
+        } else {
+            System.out.println(n + " is composite");
+        }
+        scanner.close();
     }
 
-    public static double calculateAverage(int[] numbers, int n) {
-        if (n == 0)
-            return 0;
-        else {
-            double sum = calculateAverage(numbers, n - 1) * (n - 1);
-            sum += numbers[n - 1];
-            return sum / n;
+    public static boolean isPrime(int n) {
+        if (n <= 1) {
+            return false;
+        } // End of if statement
+        else { // Start of else clause
+            return isPrimeRecursive(n, 2);
+        } // End of else clause
+    }
+
+    private static boolean isPrimeRecursive(int n, int divisor) {
+        if (divisor == n) {
+            return true;
+        } else if (n % divisor == 0) {
+            return false;
+        } else {
+            return isPrimeRecursive(n, divisor + 1);
         }
     }
 }
