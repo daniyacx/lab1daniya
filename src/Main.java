@@ -1,34 +1,19 @@
-import java.util.Scanner;
-
-public class Main {
+//a program that finds factorial "n" using recursion
+//this recursive continues until we reach the base case of 0! = 1.
+//or we use the recursive of n! as n * (n-1)!
+class Factorial {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a number: ");
-        int n = scanner.nextInt();
-        if (isPrime(n)) {
-            System.out.println(n + " is prime");
-        } else {
-            System.out.println(n + " is composite");
-        }
-        scanner.close();
+        int n = 5;
+        int result = factorial(n);
+        System.out.println(n + "! = " + result);
     }
 
-    public static boolean isPrime(int n) {
-        if (n <= 1) {
-            return false;
-        } // End of if statement
-        else { // Start of else clause
-            return isPrimeRecursive(n, 2);
-        } // End of else clause
-    }
-
-    private static boolean isPrimeRecursive(int n, int divisor) {
-        if (divisor == n) {
-            return true;
-        } else if (n % divisor == 0) {
-            return false;
-        } else {
-            return isPrimeRecursive(n, divisor + 1);
+    public static int factorial(int n) {
+        if (n == 0) {  // base case: 0! = 1
+            return 1;
+        } else {  // recursive case: n! = n * (n-1)!
+            return n * factorial(n-1);
         }
     }
 }
+
