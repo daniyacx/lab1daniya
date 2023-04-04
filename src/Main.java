@@ -1,25 +1,26 @@
-/**
-* a program that finds n-th elements in Fibonacci sequence using recursion
-* we have two base cases that terminate the recursion when n is 0 or 1
-* or we use the recursive definition of the Fibonacci sequence as Fn = Fn-1 + Fn-2
- * we can call it with any non-negative integer n, and it will recursively calculate the n-th element in the Fibonacci sequence.
- */
-public class Main {
+class PowerFunction {
     public static void main(String[] args) {
-        int n = 17;
-        int result = fibonacci(n);
-        System.out.println("Fibonacci(" + n + ") = " + result);
+        int a = 2; // base
+        int n = 10; // exponent
+        int result = power(a, n); // call the power function and store the result
+        System.out.println(a + "^" + n + " = " + result);
     }
 
-    public static int fibonacci(int n) {
-        if (n == 0) {  // base case: F0 = 0
-            return 0;
-        } else if (n == 1) {  // base case: F1 = 1
+    /**
+     * the power function using recursion
+     * @param a the base
+     * @param n the exponent
+     * @return a^n
+     */
+    public static int power(int a, int n) {
+        if (n == 0) { // base case: any number raised to the power of 0 is 1
             return 1;
-        } else {  // recursive case: Fn = Fn-1 + Fn-2
-            return fibonacci(n-1) + fibonacci(n-2);
+        } else if (n % 2 == 0) { // if the exponent is even, reduce the problem size by half
+            int temp = power(a, n/2);
+            return temp * temp; // a^n = (a^(n/2))^2
+        } else { // if the exponent is odd, reduce the problem size by one and multiply by a
+            return a * power(a, n-1); // a^n = a^(n-1) * a
         }
     }
 }
-
 
