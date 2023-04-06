@@ -1,44 +1,23 @@
 import java.util.Scanner;
-public class Main {
+class Factorial {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a number: ");
-        int n = scanner.nextInt(); // Read user input as integer
-        if (isPrime(n)) {
-            System.out.println(n + " is prime");
-        } else {
-            System.out.println(n + " is composite");
-        }
-        scanner.close();
+        System.out.print("Enter a non-negative integer: "); // Prompt the user to enter a number
+        int n = scanner.nextInt(); // Read the user's input as an integer
+        int result = factorial(n); // Call the factorial method with n and store the result
+        System.out.println(n + "! = " + result); // Print the result
     }
 
     /**
-     * this method check if a given integer is prime or not
-     * @param n the integer to check
-     * @return true if the integer is prime, false otherwise
+     * This method calculates the factorial of a given non-negative integer using recursion
+     * @param n the integer whose factorial is to be calculated
+     * @return the factorial of n
      */
-    public static boolean isPrime(int n) {
-        if (n <= 1) {
-            return false;
-        } // End of if statement
-        else { // Start of else clause
-            return isPrimeRecursive(n, 2);
-        } // End of else clause
-    }
-
-    /**
-     * checks if a given integer is prime or not
-     * @param n the integer to check
-     * @param divisor the current divisor being checked
-     * @return true if the integer is prime, false otherwise
-     */
-    private static boolean isPrimeRecursive(int n, int divisor) {
-        if (divisor == n) {
-            return true;
-        } else if (n % divisor == 0) {
-            return false;
-        } else {
-            return isPrimeRecursive(n, divisor + 1);
+    public static int factorial(int n) {
+        if (n == 0) {  // base case: 0! = 1
+            return 1;
+        } else {  // recursive case: n! = n * (n-1)!
+            return n * factorial(n-1); // call the factorial method with n-1 to calculate (n-1)!, and multiply it by n
         }
     }
 }
