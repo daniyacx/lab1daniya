@@ -1,23 +1,25 @@
 import java.util.Scanner;
-class Factorial {
+public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a non-negative integer: "); // Prompt the user to enter a number
-        int n = scanner.nextInt(); // Read the user's input as an integer
-        int result = factorial(n); // Call the factorial method with n and store the result
-        System.out.println(n + "! = " + result); // Print the result
+        System.out.print("Enter a non-negative integer: ");
+        int n = scanner.nextInt();
+        int result = fibonacci(n);
+        System.out.println("Fibonacci(" + n + ") = " + result);
     }
 
     /**
-     * This method calculates the factorial of a given non-negative integer using recursion
-     * @param n the integer whose factorial is to be calculated
-     * @return the factorial of n
+     * find the nth Fibonacci number using recursion
+     * @param n the index of the desired Fibonacci number (0-based)
+     * @return the value of the nth Fibonacci number
      */
-    public static int factorial(int n) {
-        if (n == 0) {  // base case: 0! = 1
+    public static int fibonacci(int n) {
+        if (n == 0) {  // base case: F0 = 0
+            return 0;
+        } else if (n == 1) {  // base case: F1 = 1
             return 1;
-        } else {  // recursive case: n! = n * (n-1)!
-            return n * factorial(n-1); // call the factorial method with n-1 to calculate (n-1)!, and multiply it by n
+        } else {  // recursive case: Fn = Fn-1 + Fn-2
+            return fibonacci(n-1) + fibonacci(n-2);
         }
     }
 }
