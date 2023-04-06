@@ -1,9 +1,19 @@
+import java.util.Scanner;
+
 class PowerFunction {
     public static void main(String[] args) {
-        int a = 2; // base
-        int n = 10; // exponent
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter the base: ");
+        int a = input.nextInt();
+
+        System.out.print("Enter the exponent: ");
+        int n = input.nextInt();
+
         int result = power(a, n); // call the power function and store the result
         System.out.println(a + "^" + n + " = " + result);
+
+        input.close();
     }
 
     /**
@@ -23,4 +33,3 @@ class PowerFunction {
         }
     }
 }
-
