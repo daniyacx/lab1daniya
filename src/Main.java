@@ -1,35 +1,41 @@
 import java.util.Scanner;
 
-class PowerFunction {
+public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter the base: ");
-        int a = input.nextInt();
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the exponent: ");
-        int n = input.nextInt();
+        // get the size of the array from the user
+        System.out.print("Enter the size of the array: ");
+        int size = scanner.nextInt();
 
-        int result = power(a, n); // call the power function and store the result
-        System.out.println(a + "^" + n + " = " + result);
+        int[] arr = new int[size];
 
-        input.close();
+        // get the elements of the array from the user
+        System.out.println("Enter the elements of the array: ");
+        for (int i = 0; i < size; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        // find the minimum value from the array
+        int min = findMin(arr, size);
+
+        // display the minimum value
+        System.out.println("Minimum value from the array is: " + min);
     }
 
     /**
-     * the power function using recursion
-     * @param a the base
-     * @param n the exponent
-     * @return a^n
+     * This method recursively finds the minimum value from an array
+     * @param arr the array to search
+     * @param n the number of elements in the array to search
+     * @return the minimum value from the array
      */
-    public static int power(int a, int n) {
-        if (n == 0) { // base case: any number raised to the power of 0 is 1
-            return 1;
-        } else if (n % 2 == 0) { // if the exponent is even, reduce the problem size by half
-            int temp = power(a, n/2);
-            return temp * temp; // a^n = (a^(n/2))^2
-        } else { // if the exponent is odd, reduce the problem size by one and multiply by a
-            return a * power(a, n-1); // a^n = a^(n-1) * a
+    public static int findMin(int[] arr, int n) {
+        if (n == 1)
+            return arr[0];
+        else {
+            int min = findMin(arr, n - 1);
+            return Math.min(min, arr[n - 1]);
         }
     }
 }
