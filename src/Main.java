@@ -1,40 +1,44 @@
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter the length of the array: ");
-        int n = input.nextInt();
-
-        // Create an array to store the user's numbers
-        int[] numbers = new int[n];
-
-        // Ask the user to enter n numbers and store them in the array
-        System.out.println("Enter the " + n + " numbers: ");
-        for (int i = 0; i < n; i++) {
-            numbers[i] = input.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int n = scanner.nextInt(); // Read user input as integer
+        if (isPrime(n)) {
+            System.out.println(n + " is prime");
+        } else {
+            System.out.println(n + " is composite");
         }
-
-        // Calculate the average of the numbers using recursion
-        double average = calculateAverage(numbers, n);
-
-        // Display the average to the user
-        System.out.println("The average is: " + average);
+        scanner.close();
     }
 
     /**
-     * This method calculates the average of an array of numbers using recursion
-     * @param numbers The array of numbers
-     * @param n The length of the array
-     * @return The average of the numbers
+     * this method check if a given integer is prime or not
+     * @param n the integer to check
+     * @return true if the integer is prime, false otherwise
      */
-    public static double calculateAverage(int[] numbers, int n) {
-        if (n == 0) { // If the array is empty, return 0.0
-            return 0.0;
-        } else { // Otherwise, recursively call the method and calculate the average
-            double sum = calculateAverage(numbers, n - 1) * (double)(n - 1);
-            sum += (double)numbers[n - 1];
-            return sum / (double)n;
+    public static boolean isPrime(int n) {
+        if (n <= 1) {
+            return false;
+        } // End of if statement
+        else { // Start of else clause
+            return isPrimeRecursive(n, 2);
+        } // End of else clause
+    }
+
+    /**
+     * checks if a given integer is prime or not
+     * @param n the integer to check
+     * @param divisor the current divisor being checked
+     * @return true if the integer is prime, false otherwise
+     */
+    private static boolean isPrimeRecursive(int n, int divisor) {
+        if (divisor == n) {
+            return true;
+        } else if (n % divisor == 0) {
+            return false;
+        } else {
+            return isPrimeRecursive(n, divisor + 1);
         }
     }
 }
